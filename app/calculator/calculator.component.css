@@ -1,0 +1,8 @@
+.buttonstyle{
+  border: 1px solid grey;
+}
+
+.tp-container{
+  width:400px;
+  align-items: flex-end;
+}

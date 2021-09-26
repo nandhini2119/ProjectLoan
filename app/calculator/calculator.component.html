@@ -1,0 +1,22 @@
+
+<mat-card style="text-align:center; border: 1px solid blueviolet;">
+<div class = "tp-container">
+  <mat-card-title>EMI CALCULATOR</mat-card-title><br>
+  <mat-form-field appearance = "outline">
+    <mat-label>Loan Amount</mat-label>
+     <input [(ngModel)]='amount' type="number" matInput placeholder = "Enter Loan Amount">
+  </mat-form-field><br>
+  <mat-form-field appearance = "outline">
+    <mat-label>Interest</mat-label>
+    <input [(ngModel)]='interest' type="number" matInput placeholder = "Enter Interest">
+  </mat-form-field><br>
+  <mat-form-field appearance = "outline">
+    <mat-label>Loan Tenure</mat-label>
+    <input [(ngModel)]='tenure' type="number" matInput placeholder = "Enter Loan Tenure">
+  </mat-form-field><br>
+  <div>
+    <button mat-flat-button class="buttonstyle" (click)="emiCalc()">Calculate</button>
+  </div><br>
+  <h2>Estimated EMI: <span style="color:green; font-size: 20px;"> Rs.{{result}}</span></h2>
+</div>
+</mat-card>

@@ -1,0 +1,90 @@
+<div class="header">
+<h2>ELIGIBILITY CHECK</h2>
+<span style="font-size: medium;">[Please provide the details to check your eligibility to apply Vehicle Loan]</span>
+</div>
+<br>
+
+<mat-card class="matcardclass">
+<div class="card">
+  <div class="card-header" style="text-align: center; font-weight: bolder; font-size: x-large; padding: 20px;">
+    Vehicle Details
+  </div>
+  <div class="card-body" >
+    <form #eligibleForm="ngForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-group col-12">
+        <label>Car Make</label>
+        <input type="text" class="form-control" name="carMake" placeholder="Enter Car Make" #cmake="ngModel" [(ngModel)]="userData.carMake" required>
+        <span class="help-text" *ngIf="!cmake.valid && cmake.touched">*Please enter valid data</span>
+      </div><br>
+      <div class="form-group col-12">
+        <label>Car Model</label>
+        <input type="text" ngModel class="form-control" name="carModel" placeholder="Enter Car Model" required>
+      </div><br>
+      <div class="form-group col-12">
+        <label>Ex-Showroom Price</label>
+        <input type="number" ngModel class="form-control" name="showRoomprice" placeholder="Enter Ex-Showroom Price" required>
+      </div><br>
+      <div class="form-group col-12">
+        <label>On Road Price</label>
+        <input type="text" ngModel class="form-control" name="onRoadprice" placeholder="Enter On road Price"  required>
+      </div><br>
+
+      <div class="card-header" style="text-align: center; font-weight: bolder; font-size: x-large; padding: 20px;">
+        Applicant Details
+      </div>
+      <div class="card-body" >
+        <div class="form-group col-12">
+          <label>Name</label>
+          <input type="text" ngModel class="form-control" name="Name" placeholder="Enter Name" required>
+        </div><br>
+        <div class="form-group col-12">
+          <label>Age</label>
+          <input type="number" ngModel class="form-control" name="Age" placeholder="Enter Age" required>
+        </div><br>
+        <div class="form-group col-12">
+          <label>Gender</label>
+          <select class="form-control" id="gender" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+         </div><br>
+
+        <div class="form-group col-12">
+          <label>Type Of Employement</label>
+          <input type="text" ngModel class="form-control" name="typeOfEmployment" placeholder="Enter Type Of Employement" required>
+        </div><br>
+        <div class="form-group col-12">
+          <label>Yearly Salary</label>
+          <input type="number" ngModel class="form-control" name="salary" placeholder="Enter Yearly Salary" required>
+        </div><br>
+        <div class="form-group col-12">
+          <label>Existing EMI</label>
+          <input type="number" ngModel class="form-control" name="ExistingEMI" placeholder="Enter Existing EMI" required>
+        </div><br>
+        <div class="form-group col-12">
+          <label>Mobile No.</label>
+          <input type="number" ngModel class="form-control" name="Mobile" placeholder="Enter Mobile Number" maxlength="10" required>
+        </div><br>
+        <div class="form-group col-12">
+          <label>Email ID</label>
+          <input type="email" ngModel class="form-control" name="emailid" placeholder="Enter Email ID" required>
+        </div><br>
+      </div>
+      <div class="form-group col-12" style="text-align: center;">
+        <button type="submit" class="btn btn-primary"  style="margin-right: 10px;">Check Eligibility</button>
+        <!--[disabled]="!eligibleForm.valid"-->
+        <button type="reset" class="btn btn-primary">Reset</button>
+      </div>
+    </form>
+
+      <div>
+        <h2>Your data:</h2>
+        <div>Name: {{userData.Name}}</div>
+        <div>Age: {{userData.Age}}</div>
+        <div>Email: {{userData.Email}}</div>
+        <div>Email: {{userData.Mobile}}</div>
+      </div>
+
+  </div>
+</div>
+</mat-card>
