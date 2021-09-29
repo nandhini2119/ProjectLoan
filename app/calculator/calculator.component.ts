@@ -11,7 +11,7 @@ export class CalculatorComponent implements OnInit {
   public interest:any;
   public tenure:any;
   public result:any;
-
+ 
   emiCalc(){
     let uphalf= Math.pow((1+this.interest),this.tenure);
     let downhalf = Math.pow((1+this.interest),this.tenure) - 1;

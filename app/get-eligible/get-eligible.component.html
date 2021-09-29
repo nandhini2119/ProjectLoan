@@ -10,11 +10,11 @@
     Vehicle Details
   </div>
   <div class="card-body" >
-    <form #eligibleForm="ngForm" (ngSubmit)="onFormSubmit()">
+    <form #eligibleForm="ngForm" ><!--(ngSubmit)="onFormSubmit()"-->
       <div class="form-group col-12">
         <label>Car Make</label>
-        <input type="text" class="form-control" name="carMake" placeholder="Enter Car Make" #cmake="ngModel" [(ngModel)]="userData.carMake" required>
-        <span class="help-text" *ngIf="!cmake.valid && cmake.touched">*Please enter valid data</span>
+        <input type="text" class="form-control" name="carMake" placeholder="Enter Car Make"  required>
+        <!--span class="help-text" *ngIf="!cmake.valid && cmake.touched">*Please enter valid data</span-->
       </div><br>
       <div class="form-group col-12">
         <label>Car Model</label>
@@ -35,15 +35,15 @@
       <div class="card-body" >
         <div class="form-group col-12">
           <label>Name</label>
-          <input type="text" ngModel class="form-control" name="Name" placeholder="Enter Name" required>
+          <input type="text" ngModel class="form-control" name="Name" [(ngModel)]="Name" placeholder="Enter Name" required>
         </div><br>
         <div class="form-group col-12">
           <label>Age</label>
-          <input type="number" ngModel class="form-control" name="Age" placeholder="Enter Age" required>
+          <input type="number" ngModel class="form-control" name="Age" [(ngModel)]="Age" placeholder="Enter Age" required>
         </div><br>
         <div class="form-group col-12">
           <label>Gender</label>
-          <select class="form-control" id="gender" name="gender">
+          <select class="form-control" id="gender" name="gender" [(ngModel)]="Gender">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
@@ -51,39 +51,42 @@
 
         <div class="form-group col-12">
           <label>Type Of Employement</label>
-          <input type="text" ngModel class="form-control" name="typeOfEmployment" placeholder="Enter Type Of Employement" required>
+          <input type="text" ngModel class="form-control" name="typeOfEmployment" [(ngModel)]="TypeOfEmployement" placeholder="Enter Type Of Employement" required>
         </div><br>
         <div class="form-group col-12">
           <label>Yearly Salary</label>
-          <input type="number" ngModel class="form-control" name="salary" placeholder="Enter Yearly Salary" required>
+          <input type="number" ngModel class="form-control" name="salary" [(ngModel)]="YearSalary" placeholder="Enter Yearly Salary" required>
         </div><br>
         <div class="form-group col-12">
           <label>Existing EMI</label>
-          <input type="number" ngModel class="form-control" name="ExistingEMI" placeholder="Enter Existing EMI" required>
+          <input type="number" ngModel class="form-control" name="ExistingEMI" [(ngModel)]="ExistingEMI" placeholder="Enter Existing EMI" required>
         </div><br>
         <div class="form-group col-12">
           <label>Mobile No.</label>
-          <input type="number" ngModel class="form-control" name="Mobile" placeholder="Enter Mobile Number" maxlength="10" required>
+          <input type="number" ngModel class="form-control" name="Mobile" [(ngModel)]="Mobile" placeholder="Enter Mobile Number" maxlength="10" required>
         </div><br>
         <div class="form-group col-12">
           <label>Email ID</label>
-          <input type="email" ngModel class="form-control" name="emailid" placeholder="Enter Email ID" required>
+          <input type="email" ngModel class="form-control" name="emailid" [(ngModel)]="Email" placeholder="Enter Email ID" required>
         </div><br>
       </div>
       <div class="form-group col-12" style="text-align: center;">
-        <button type="submit" class="btn btn-primary"  style="margin-right: 10px;">Check Eligibility</button>
+        <button type="submit" class="btn btn-primary" (click)="onFormSubmit()"  style="margin-right: 10px;">Check Eligibility</button>
         <!--[disabled]="!eligibleForm.valid"-->
         <button type="reset" class="btn btn-primary">Reset</button>
       </div>
     </form>
 
       <div>
-        <h2>Your data:</h2>
+        <label>{{AckMsg}}</label>
+        <label>{{Result}}</label>
+        </div>
+        <!--h2>Your data:</!--h2>
         <div>Name: {{userData.Name}}</div>
         <div>Age: {{userData.Age}}</div>
         <div>Email: {{userData.Email}}</div>
         <div>Email: {{userData.Mobile}}</div>
-      </div>
+      </div-->
 
   </div>
 </div>

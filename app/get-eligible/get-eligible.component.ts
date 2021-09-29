@@ -1,56 +1,52 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormdetailsService } from '../formdetails.service';
+
 @Component({
   selector: 'app-get-eligible',
   templateUrl: './get-eligible.component.html',
-  styleUrls: ['./get-eligible.component.css']
+  styleUrls: ['./get-eligible.component.css'],
+  providers:[FormdetailsService]
+
 })
 export class GetEligibleComponent implements OnInit {
 
-  @ViewChild('eligibleForm') EForm: NgForm;
-  //for getting values that are submitted by the user in the form
-  submitted=false;
-  userData ={
-    carMake:'',
-    carModel:'',
-    ExShowPrice:0,
-    OnRoadPrice:0,
-    Name:'',
-    Age:0,
-    Gender:'',
-    TypeOfEmp:'',
-    YearSalary:0,
-    ExistingEMI:0,
-    Mobile:0,
-    Email:''
-  };
-  constructor(private _router:Router) { }
+  Name:string='';
+  Age:number=0;
+  Gender:string='';
+  TypeOfEmployement:string='';
+  YearSalary:number=0;
+  ExistingEMI:number=0;
+  Mobile:number=0;
+  Email:string='';
+  AckMsg:string='';
+  Result:string='';
+
+  constructor(private service: FormdetailsService,private _router : Router) { }
 
   ngOnInit(): void {
   }
-
   onFormSubmit(){
-    /*console.log(this.EForm.value);
-    console.log('car Make:'+ this.EForm.controls['carMake'].value);
-    console.log(this.userData.carMake);*/
-    this.submitted=true;
-    this.userData.carMake=this.EForm.value.carMake;
-    this.userData.carModel=this.EForm.value.carModel;
-    this.userData.ExShowPrice=this.EForm.value.showRoomprice;
-    this.userData.OnRoadPrice=this.EForm.value.onRoadprice;
-    this.userData.Name=this.EForm.value.Name;
-    this.userData.Age=this.EForm.value.Age;
-    this.userData.Gender=this.EForm.value.gender;
-    this.userData.TypeOfEmp=this.EForm.value.typeOfEmployment;
-    this.userData.YearSalary=this.EForm.value.salary;
-    this.userData.ExistingEMI=this.EForm.value.ExistingEMI;
-    this.userData.Mobile=this.EForm.value.Mobile;
-    this.userData.Email=this.EForm.value.emailid;
+    var DetailsObject={
+      CustomerID:0,
+      Name:this.Name.trim(),
+      Age:this.Age,
+      Gender:this.Gender.trim(),
+      TypeOfEmployement: this.TypeOfEmployement.trim(),
+      YearSalary: this.YearSalary,
+      ExistingEMI:this.ExistingEMI,
+      Mobile:this.Mobile,
+      Email:this.Email.trim()
 
-    if(this.userData.Age > 18){
+    }
+    this.service.ServiceMethodCustomerRegistration(DetailsObject).subscribe();
+    this.AckMsg = "Customer registered successfully";
+    if(DetailsObject.Age>23 && DetailsObject.YearSalary>=300000){
       this._router.navigateByUrl('/LoanOffers');
     }
+
+  }
   }
 
-}
+

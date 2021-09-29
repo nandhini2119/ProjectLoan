@@ -1,0 +1,33 @@
+<div *ngIf="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Invalid!</strong>Please check Username and Password
+  <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<mat-card class="matcardclass" style="width: 500px;">
+  <div class="card">
+    <div class="card-header" style="text-align: center; font-weight: bolder; font-size: x-large; padding: 20px;">
+      ADMIN
+    </div>
+    <div class="card-body" >
+      <form #loginForm='ngForm' (ngSubmit)="OnLogin(loginForm)">
+        <div class="form-group col-12">
+          <label>User Name:</label>
+          <input class="form-control" required ngModel name="UserName">
+          <!--span class="help-text" *ngIf="!cmake.valid && cmake.touched">*Please enter valid data</span-->
+        </div><br>
+        <div class="form-group col-12">
+          <label>Password:</label>
+          <input class="form-control" type="password" required ngModel name="Password">
+       </div><br>
+        <div class="form-group col-12" style="text-align: center;">
+          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button> |
+            <button type="button" class="btn btn-primary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</mat-card>
+
+
+

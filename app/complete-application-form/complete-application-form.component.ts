@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators,FormBuilder, MinValidator, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+
 @Component({
   selector: 'app-complete-application-form',
   templateUrl: './complete-application-form.component.html',
   styleUrls: ['./complete-application-form.component.css']
 })
 export class CompleteApplicationFormComponent implements OnInit {
-
+  hide = true;
+  isEditable=false;
+  isLinear=false;
   DetailsForm: FormGroup;
   PersonalDetails:FormGroup;
   EmployementDetails:FormGroup;
@@ -42,7 +45,7 @@ export class CompleteApplicationFormComponent implements OnInit {
       existingEMI:[null,Validators.required]
     });
     this.VehicleDetails=this.fb.group({
-      carmake:['',Validators.required],
+      carMake:['',Validators.required],
       carModel:['',Validators.required],
       exShowroomPrice:[null,Validators.required]
     });
@@ -63,6 +66,18 @@ export class CompleteApplicationFormComponent implements OnInit {
   personalDetailSubmit(){
     let UserName=this.PersonalDetails.get('name')?.value;
     console.log(UserName);
+  }
+
+  EmployementDetailsSubmit(){
+
+  }
+
+  VehicleDetailsSubmit(){
+
+  }
+
+  LoanDetailsSubmit(){
+
   }
 
 }

@@ -1,0 +1,9 @@
+mat-slider{
+  width:500px;
+}
+mat-card{
+  align-content: center;
+  text-align: center;
+  padding: 50px;
+  margin: 50px;
+}

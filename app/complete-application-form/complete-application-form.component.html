@@ -1,6 +1,6 @@
-<mat-vertical-stepper linear>
-  <mat-step [stepControl]="PersonalDetails">
-    <form [formGroup]="PersonalDetails" (ngSubmit)=personalDetailSubmit()>
+<mat-vertical-stepper [linear]="isLinear">
+  <mat-step [stepControl]="PersonalDetails" [editable]="false">
+    <form [formGroup]="PersonalDetails" (ngSubmit)="personalDetailSubmit()" >
       <ng-template matStepLabel>Personal Details</ng-template>
       <mat-form-field>
         <mat-label>First Name:</mat-label>
@@ -27,9 +27,13 @@
           <mat-label>Email ID</mat-label>
           <input matInput placeholder="Enter Email ID" formControlName="email" type="email" required>
         </mat-form-field><br>
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter Password" formControlName="password" type="password" required>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field><br>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Address</mat-label>
@@ -48,30 +52,39 @@
         <mat-form-field appearance="fill">
           <mat-label>City</mat-label>
           <select matNativeControl formControlName="city" required>
-            <option value="Chennai">Tamil Nadu</option>
-            <option value="Bangalore">Karnataka</option>
-            <option value="Hyderabad">Andhra Pradesh</option>
-            <option value="Mumbai">Maharashtra</option>
+            <option value="Chennai"> Chennai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Hyderabad">Hyderabad </option>
+            <option value="Mumbai">Mumbai</option>
           </select>
         </mat-form-field>
 
 
       <div>
-        <button mat-button matStepperPrevious>Previous</button>
         <button mat-button matStepperNext >Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="EmployementDetails">
-    <form [formGroup]="EmployementDetails">
+
+
+  <mat-step [stepControl]="EmployementDetails" [editable]="false">
+    <form [formGroup]="EmployementDetails" (ngSubmit)=EmployementDetailsSubmit()>
       <ng-template matStepLabel>Employement Details</ng-template>
       <mat-form-field>
         <mat-label>Type Of Employement:</mat-label>
         <input matInput placeholder="Enter Type Of Employement" formControlName="typeOfEmployment" required>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Annual Salary</mat-label>
-        <input matInput placeholder="Enter Type Of Employement" formControlName="typeOfEmployment" required>
+      </mat-form-field><br>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Annual Salary:</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="annualSalary" required>
+        <span matPrefix>₹&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field><br>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Existing EMI:</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="existingEMI" required>
+        <span matPrefix>₹&nbsp;</span>
+        <span matSuffix>.00</span>
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Previous</button>
@@ -79,41 +92,57 @@
       </div>
     </form>
   </mat-step>
-  <mat-step label="Loan Details">
-    <p>Step 3:</p>
-    <button mat-button matStepperNext>Next</button>
+  <mat-step [stepControl]="VehicleDetails" [editable]="false">
+    <form [formGroup]="VehicleDetails" (ngSubmit)=VehicleDetailsSubmit()>
+      <ng-template matStepLabel>Vehicle Details</ng-template>
+      <mat-form-field>
+        <mat-label>Car Make:</mat-label>
+        <input matInput placeholder="Enter Car Make:" formControlName="carMake" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Car Model:</mat-label>
+        <input matInput placeholder="Enter Car Model:" formControlName="carModel" required>
+      </mat-form-field><br>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Ex-Showroom Price:</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="exShowroomPrice" required>
+        <span matPrefix>₹&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Previous</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="LoanDetails" [editable]="false">
+    <form [formGroup]="LoanDetails" (ngSubmit)=LoanDetailsSubmit()>
+      <ng-template matStepLabel>Loan Details</ng-template>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Loan Amount</mat-label>
+        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="loanAmount" required>
+        <span matPrefix>₹&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Loan Interest:</mat-label>
+        <input matInput type="number" placeholder="Enter Loan Interest:" formControlName="rateofInterest" required>
+      </mat-form-field><br>
+      <mat-form-field>
+        <mat-label>Loan Tenure:</mat-label>
+        <input matInput placeholder="Enter Loan Tenure:" formControlName="loanTenure" required>
+      </mat-form-field><br>
+
+      <div>
+        <button mat-button matStepperPrevious>Previous</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Thank You</ng-template>
+    <p>Submitted Successfully!</p>
   </mat-step>
 </mat-vertical-stepper>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-10">
-    <form [formGroup]="DetailsForm" (ngSubmit)='onSubmit()'>
-      <div class="form-group">
-        <label>Name</label>
-        <input class="form-control" type="text" formControlName="name">
-        <span class="help-block" *ngIf="!DetailsForm.get('name')?.valid && DetailsForm.get('name')?.touched " >Please enter valid name</span>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input class="form-control" type="email" formControlName="email">
-        <span class="help-block" *ngIf="!DetailsForm.get('email')?.valid && DetailsForm.get('email')?.touched " >Please enter valid email</span>
-      </div>
-      <div class="form-group">
-        <label>Gender:</label>
-        <div>
-          <input type="radio" value="Male" name="gender" formControlName="gender">
-          <label>Male</label>
-        </div>
-        <div>
-          <input type="radio" value="Female" name="gender" formControlName="gender">
-          <label>Female</label>
-        </div>
-      </div>
-      <div>
-        <button type="submit" class="btn btn-dark">Submit</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>

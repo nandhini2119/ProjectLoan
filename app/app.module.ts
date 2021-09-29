@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 //added
+import { MatDividerModule } from '@angular/material/divider';
+import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -23,6 +26,14 @@ import { CompleteApplicationFormComponent } from './complete-application-form/co
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { LoginComponent } from './login/login.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { FormdetailsService } from './formdetails.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,22 +42,27 @@ import {MatRadioModule} from '@angular/material/radio';
     CalculatorComponent,
     GetEligibleComponent,
     LoanOffersComponent,
-    CompleteApplicationFormComponent
+    CompleteApplicationFormComponent,
+    LoginComponent,
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
     MatDialogModule,MatInputModule,FormsModule, ReactiveFormsModule,
-    MatStepperModule,
-    MatSelectModule,MatFormFieldModule,MatRadioModule
+    MatStepperModule,MatMenuModule,MatSidenavModule,MatDividerModule,
+    MatSelectModule,MatFormFieldModule,MatRadioModule,MatSliderModule
 
   ],
-  providers: [],
+  providers: [FormdetailsService,HttpClientModule],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[CalculatorComponent]

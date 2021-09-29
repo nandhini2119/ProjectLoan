@@ -8,8 +8,13 @@
     <a mat-button>About Us</a>
     <a mat-button (click)="CreateCalculator()">EMI Calculator</a>
     <a mat-button routerLink="getEligible" routerLinkActive="active">Apply Loan</a>
-    <a mat-raised-button>Login</a>
-</mat-toolbar>
+    <!--a mat-raised-button routerLink="LoginForm" routerLinkActive="active">Login</!--a-->
+    <button mat-raised-button [matMenuTriggerFor]="menu">Login</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="UserLogin">User Login</button>
+      <button mat-menu-item routerLink="AdminLogin">Admin Login</button>
+    </mat-menu>
+  </mat-toolbar>
 
 
 
