@@ -1,9 +1,35 @@
 mat-slider{
-  width:500px;
+  width:300px;
 }
-mat-card{
+.card1{
+  margin-top: 20px;
+  margin-bottom: 0;
   align-content: center;
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
   text-align: center;
+  font-size: 40px;
+  border:1px solid blueviolet;
+}
+.card{
+  align-content: center;
   padding: 50px;
-  margin: 50px;
+  margin: 30px;
+  margin-top: 0;
+  width: 500px;
+  height: 700px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  text-align: center;
+  border:1px solid blueviolet;
+}
+.container{
+  display:inline-block;
+  vertical-align: top;
+  float: none;
 }

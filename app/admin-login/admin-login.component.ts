@@ -24,12 +24,12 @@ export class AdminLoginComponent implements OnInit {
     console.log(this.Password);
     let uname="Admin";
     let psw="asdf"
-   // if(this.UserName==uname && this.Password==psw){
+    if(this.UserName==uname && this.Password==psw){
       this._router.navigateByUrl('/AdminDashboard');
-   // }
-   /* else{
+    }
+    else{
       this.alert=true;
-    }*/
+    }
   }
   closeAlert(){
     this.alert=false;

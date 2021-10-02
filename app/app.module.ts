@@ -33,6 +33,9 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { FormdetailsService } from './formdetails.service';
+import { SharedService } from './shared.service';
+import { AngularFileUploaderModule } from "angular-file-uploader";
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -55,14 +58,14 @@ import { FormdetailsService } from './formdetails.service';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule,
-    MatCardModule,
+    MatIconModule,MatListModule,
+    MatCardModule,AngularFileUploaderModule,
     MatDialogModule,MatInputModule,FormsModule, ReactiveFormsModule,
     MatStepperModule,MatMenuModule,MatSidenavModule,MatDividerModule,
     MatSelectModule,MatFormFieldModule,MatRadioModule,MatSliderModule
 
   ],
-  providers: [FormdetailsService,HttpClientModule],
+  providers: [FormdetailsService,HttpClientModule,SharedService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[CalculatorComponent]

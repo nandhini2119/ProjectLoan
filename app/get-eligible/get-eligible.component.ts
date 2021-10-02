@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FormdetailsService } from '../formdetails.service';
+
 
 @Component({
   selector: 'app-get-eligible',
   templateUrl: './get-eligible.component.html',
   styleUrls: ['./get-eligible.component.css'],
-  providers:[FormdetailsService]
+  providers:[]
 
 })
 export class GetEligibleComponent implements OnInit {
@@ -23,7 +23,7 @@ export class GetEligibleComponent implements OnInit {
   AckMsg:string='';
   Result:string='';
 
-  constructor(private service: FormdetailsService,private _router : Router) { }
+  constructor(private _router : Router) { }
 
   ngOnInit(): void {
   }
@@ -40,8 +40,8 @@ export class GetEligibleComponent implements OnInit {
       Email:this.Email.trim()
 
     }
-    this.service.ServiceMethodCustomerRegistration(DetailsObject).subscribe();
-    this.AckMsg = "Customer registered successfully";
+    //this.service.ServiceMethodCustomerRegistration(DetailsObject).subscribe();
+   // this.AckMsg = "Customer registered successfully";
     if(DetailsObject.Age>23 && DetailsObject.YearSalary>=300000){
       this._router.navigateByUrl('/LoanOffers');
     }

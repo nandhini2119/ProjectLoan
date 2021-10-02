@@ -1,6 +1,7 @@
+
 <mat-vertical-stepper [linear]="isLinear">
   <mat-step [stepControl]="PersonalDetails" [editable]="false">
-    <form [formGroup]="PersonalDetails" (ngSubmit)="personalDetailSubmit()" >
+    <form [formGroup]="PersonalDetails" (ngSubmit)="personalDetailSubmit()" #disableNext="ngForm" >
       <ng-template matStepLabel>Personal Details</ng-template>
       <mat-form-field>
         <mat-label>First Name:</mat-label>
@@ -57,43 +58,61 @@
             <option value="Hyderabad">Hyderabad </option>
             <option value="Mumbai">Mumbai</option>
           </select>
-        </mat-form-field>
-
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-label>PinCode:</mat-label>
+          <input matInput placeholder="Enter pincode" type="text" formControlName="pincode" required minlength="6" maxlength="6">
+        </mat-form-field><br>
 
       <div>
-        <button mat-button matStepperNext >Next</button>
+        <button mat-button matStepperNext [disabled]="!disableNext.valid" >Next</button>
       </div>
     </form>
   </mat-step>
 
 
   <mat-step [stepControl]="EmployementDetails" [editable]="false">
-    <form [formGroup]="EmployementDetails" (ngSubmit)=EmployementDetailsSubmit()>
+    <form [formGroup]="EmployementDetails" (ngSubmit)=EmployementDetailsSubmit() #disableNext="ngForm">
       <ng-template matStepLabel>Employement Details</ng-template>
-      <mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Type Of Employment</mat-label>
+        <select matNativeControl formControlName="typeOfEmployment" required>
+          <option value="Self-Employed Individuals and Professionals (Sole Proprietors)"> Self-Employed Individuals and Professionals (Sole Proprietors)</option>
+          <option value="Salaried Individuals">Salaried Individuals</option>
+          <option value="Self-Employed Individuals and Professionals (Patnership Firms)">Self-Employed Individuals and Professionals (Patnership Firms) </option>
+          <option value="Self-Employed Individuals and Professionals (Private Limited Companies)">Self-Employed Individuals and Professionals (Private Limited Companies)</option>
+          <option value="Self-Employed Individuals and Professionals (Public Limited Companies)">Self-Employed Individuals and Professionals (Public Limited Companies)</option>
+        </select>
+      </mat-form-field>
+      <!--mat-form-field>
         <mat-label>Type Of Employement:</mat-label>
         <input matInput placeholder="Enter Type Of Employement" formControlName="typeOfEmployment" required>
-      </mat-form-field><br>
+      </!--mat-form-field--><br>
       <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Annual Salary:</mat-label>
         <input matInput type="number" class="example-right-align" placeholder="0" formControlName="annualSalary" required>
         <span matPrefix>₹&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field><br>
-      <mat-form-field appearance="fill" floatLabel="always">
+      <!--mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Existing EMI:</mat-label>
         <input matInput type="number" class="example-right-align" placeholder="0" formControlName="existingEMI" required>
         <span matPrefix>₹&nbsp;</span>
         <span matSuffix>.00</span>
-      </mat-form-field>
+      </!--mat-form-field-->
+      <label style="padding-right: 10px;">Existing EMI:</label>
+      <mat-radio-group aria-label="Select an option"  formControlName="existingEMI" required>
+        <mat-radio-button value="Yes">Yes</mat-radio-button>
+        <mat-radio-button value="No">No</mat-radio-button>
+      </mat-radio-group><br>
       <div>
         <button mat-button matStepperPrevious>Previous</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext [disabled]="!disableNext.valid">Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="VehicleDetails" [editable]="false">
-    <form [formGroup]="VehicleDetails" (ngSubmit)=VehicleDetailsSubmit()>
+    <form [formGroup]="VehicleDetails" (ngSubmit)=VehicleDetailsSubmit() #disableNext="ngForm">
       <ng-template matStepLabel>Vehicle Details</ng-template>
       <mat-form-field>
         <mat-label>Car Make:</mat-label>
@@ -111,27 +130,27 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Previous</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext [disabled]="!disableNext.valid">Next</button>
       </div>
     </form>
   </mat-step>
 
-  <mat-step [stepControl]="LoanDetails" [editable]="false">
+  <!--mat-step [stepControl]="LoanDetails" [editable]="false">
     <form [formGroup]="LoanDetails" (ngSubmit)=LoanDetailsSubmit()>
       <ng-template matStepLabel>Loan Details</ng-template>
       <mat-form-field appearance="fill" floatLabel="always">
         <mat-label>Loan Amount</mat-label>
-        <input matInput type="number" class="example-right-align" placeholder="0" formControlName="loanAmount" required>
+        <input [disabled]="disableText" matInput type="number" class="example-right-align"  placeholder="0" formControlName="loanAmount" required>
         <span matPrefix>₹&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field><br>
       <mat-form-field>
         <mat-label>Loan Interest:</mat-label>
-        <input matInput type="number" placeholder="Enter Loan Interest:" formControlName="rateofInterest" required>
+        <input [readonly]="this.isEditable" matInput type="number" placeholder="Enter Loan Interest:"  formControlName="rateofInterest" required minlength="5" maxlength="15">
       </mat-form-field><br>
       <mat-form-field>
         <mat-label>Loan Tenure:</mat-label>
-        <input matInput placeholder="Enter Loan Tenure:" formControlName="loanTenure" required>
+        <input [readonly]="this.isEditable" matInput placeholder="Enter Loan Tenure:" formControlName="loanTenure"  required>
       </mat-form-field><br>
 
       <div>
@@ -139,7 +158,47 @@
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
+  </!--mat-step-->
+  <mat-step [stepControl]="LoanDetails" [editable]="false">
+    <ng-template matStepLabel>Loan Details</ng-template>
+    <mat-list role="list">
+      <mat-list-item role="listitem">Your Loan Amount: ₹{{lamount}}</mat-list-item>
+      <mat-list-item role="listitem">Your Loan Interest: {{linterest}} percent</mat-list-item>
+      <mat-list-item role="listitem">Your Loan Tenure: {{lyear}} years</mat-list-item>
+    </mat-list><br>
+    <div>
+      <button mat-button matStepperPrevious>Previous</button>
+      <button mat-button matStepperNext (click)='LoanDetailsSubmit()'>Next</button>
+    </div>
   </mat-step>
+
+  <!--mat-step [stepControl]="IdentityDetails" [editable]="false">
+    <form [formGroup]="IdentityDetails" (ngSubmit)=IdentityDetailsSubmit()>
+      <ng-template matStepLabel>Identity Details</ng-template>
+        <div class="form-group">
+        <mat-label>Identity & Address Proof:</mat-label>
+        <input  type="file" name="upload" formControlName="upload" (change)="onSelectedFile($event)">
+        </div>
+        <div class="form-group">
+          <mat-label>Passport Size Photo:</mat-label>
+          <input  type="file" name="upload" formControlName="upload" (change)="onSelectedFile($event)">
+        </div>
+        <div class="form-group">
+          <mat-label>Bank Statement:</mat-label>
+          <input  type="file" name="upload" formControlName="upload" (change)="onSelectedFile($event)">
+        </div>
+        <div class="form-group">
+          <mat-label>Salary Slip:</mat-label>
+          <input  type="file" name="upload" formControlName="upload" (change)="onSelectedFile($event)">
+        </div>
+      <br>
+      <div>
+        <button mat-button matStepperPrevious>Previous</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step-->
+
   <mat-step>
     <ng-template matStepLabel>Thank You</ng-template>
     <p>Submitted Successfully!</p>

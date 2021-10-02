@@ -17,7 +17,11 @@ const routes: Routes = [
   {path:'UserLogin', component:LoginComponent},
   {path:'AdminLogin', component:AdminLoginComponent},
   {path:'AdminDashboard', component:AdminDashboardComponent},
-  {path:'UserDashboard', component:UserDashboardComponent}
+  {path:'UserDashboard', component:UserDashboardComponent,
+  children: [
+    { path: 'loanAmount', loadChildren: './getEligible' },
+  ]
+}
 ];
 
 @NgModule({
